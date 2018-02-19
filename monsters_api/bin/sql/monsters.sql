@@ -18,7 +18,7 @@ CREATE TABLE lives(
 
 CREATE TABLE enemies(
   id serial,
-  enemy character varying(50),
+  enemyOf character varying(50),
   name character varying(50)
 );
 
@@ -40,7 +40,7 @@ VALUES
 ('Orc', 'Mordor'),
 ('Gollum', 'Gondor');
 
-INSERT INTO enemies(enemy, name)
+INSERT INTO enemies(enemyOf, name)
 VALUES
 ('Gollum', 'Sam'),
 ('Aragorn', 'Sauron')
