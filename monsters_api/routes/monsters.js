@@ -4,7 +4,7 @@ const pool = require("../db");
 const router = Router();
 
 router.get("/", (request, response, next) => {
-  //'/monsters' is already set as default in app.js
+  //'/monsters' is already set as default in index.js
   pool.query("SELECT * FROM monsters ORDER BY id ASC", (err, res) => {
     if (err) return next(err);
 
@@ -35,7 +35,7 @@ router.post("/", (request, response, next) => {
 });
 
 router.put("/:id", (request, response, next) => {
-  //PUT allows updating of data; NEXT for handling errors
+  //PUT allows updating of data; NEXT for handling errors in callback
   console.log(request.body);
   const { id } = request.params;
   const keys = ["name", "personality"];
@@ -61,7 +61,7 @@ router.put("/:id", (request, response, next) => {
 router.delete("/:id", (request, response, next) => {
   const { id } = request.params;
 
-  pool.query("DELETE FROM monsters WHERE id=($1)", [id], (err, res) => {
+  pool.query("DELETE FROM monsters WHERE id = $1", [id], (err, res) => {
     if (err) return next(err);
 
     response.redirect(303, "/monsters");
